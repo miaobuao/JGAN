@@ -280,7 +280,7 @@ for epoch in range(n_epochs):
         #  Train Generator
         # -----------------
 
-        if ((i % n_skip_iter) == 0):
+        if ((i % n_skip_iter) == 0) or real_imgs.shape[0] != batch_size:
             (enc_gen_zn, enc_gen_zc, enc_gen_zc_logits) = encoder(gen_imgs)
             zn_loss = mse_loss(enc_gen_zn, zn)
             zc_loss = xe_loss(enc_gen_zc_logits, zc_idx)
